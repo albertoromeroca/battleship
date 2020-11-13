@@ -8,6 +8,7 @@ public class Square {
 	private int num;
 	private boolean occupied;
 	private boolean visited;
+	private boolean touched;
 	
 		
 	/*Methods*/
@@ -17,6 +18,7 @@ public class Square {
 		this.letter = letter;
 		this.occupied = false;
 		this.visited = false;
+		this.touched = false;
 	}
 	
 	public void setNum(int num) { //Done
@@ -49,6 +51,14 @@ public class Square {
 	
 	public boolean getVisited() { //Done
 		return this.visited;
+	}
+	
+	public void setTouched() { //Done
+		this.touched = true;
+	}
+	
+	public boolean getTouched() { //Done
+		return this.touched;
 	}
 	
 }

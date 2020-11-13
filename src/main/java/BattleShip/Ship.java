@@ -9,7 +9,7 @@ public class Ship {
 	
 	private int length;
 	private boolean death;
-	private Square[] squares;
+	private ArrayList<Square> squares;
 	
 	
 	/*Methods*/
@@ -17,6 +17,7 @@ public class Ship {
 	public Ship(int length) { //Done
 		this.length = length;
 		this.death = false;
+		this.squares = new ArrayList<Square>();
 	}
 	
 	public void setLength(int length) { //Done
@@ -35,4 +36,27 @@ public class Ship {
 		return this.death;
 	}
 	
+	public void addSquare(Square square) { //Done
+		this.squares.add(square);
+	}
+	
+	
+	public int getSquareByCoord(Square square) {
+		int position = -1;
+		for (int i = 0; i < this.squares.size(); i++) {
+			if(square.getLetter() == this.squares.get(i).getLetter() && square.getNum() == this.squares.get(i).getNum()) {
+				position = i;
+			}
+			
+		}
+		return position;
+	}
+		
+	public void setExplosion(Square square) { //Done
+		square.setTouched();
+		square.setVisited();
+	}
+	
+	
 }
+

@@ -19,11 +19,19 @@ public class BoardTest {
 
 	@Test
 	public void testExists() {
-		Square square = new Square("A", 1);
+		Square square1 = new Square("A", 1);
+		Square square2 = new Square("A", 2);
+		Square square3 = new Square("B", 2);
+		Square square4 = new Square("B", 3);
 		ArrayList<Square> squares = new ArrayList<Square>();
-		squares.add(square);
+		squares.add(square1);
 		Board board = new Board(squares);
-		assertTrue(board.exists(square));
+		assertTrue(board.exists(square1));
+		assertFalse(board.exists(square2));
+		assertFalse(board.exists(square3));
+		assertFalse(board.exists(square4));
+		
+		
 	}
 
 }
