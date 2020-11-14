@@ -10,7 +10,7 @@ public class BoardTest {
 
 	@Test
 	public void testBoard() {
-		Square square = new Square("A", 1);
+		Square square = new Square('A', 1);
 		ArrayList<Square> squares = new ArrayList<Square>();
 		squares.add(square);
 		Board board = new Board(squares);
@@ -19,10 +19,10 @@ public class BoardTest {
 
 	@Test
 	public void testExists() {
-		Square square1 = new Square("A", 1);
-		Square square2 = new Square("A", 2);
-		Square square3 = new Square("B", 2);
-		Square square4 = new Square("B", 3);
+		Square square1 = new Square('A', 1);
+		Square square2 = new Square('A', 2);
+		Square square3 = new Square('B', 2);
+		Square square4 = new Square('B', 3);
 		ArrayList<Square> squares = new ArrayList<Square>();
 		squares.add(square1);
 		Board board = new Board(squares);

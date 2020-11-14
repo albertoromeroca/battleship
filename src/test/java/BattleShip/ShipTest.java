@@ -42,8 +42,8 @@ public class ShipTest {
 	@Test
 	public void testSetExplosion() {
 		Ship ship = new Ship(2);
-		Square square1 = new Square("A", 1);
-		Square square2 = new Square("A", 2);
+		Square square1 = new Square('A', 1);
+		Square square2 = new Square('A', 2);
 		ship.addSquare(square1);
 		ship.addSquare(square2);
 		ship.setExplosion(square1);
@@ -57,10 +57,10 @@ public class ShipTest {
 	@Test
 	public void testGetSquareByCoord() {
 		Ship ship = new Ship(2);
-		Square square1 = new Square("A", 1);
-		Square square2 = new Square("A", 2);
-		Square square3 = new Square("B", 2);
-		Square square4 = new Square("B", 3);
+		Square square1 = new Square('A', 1);
+		Square square2 = new Square('A', 2);
+		Square square3 = new Square('B', 2);
+		Square square4 = new Square('A', 3);
 		ship.addSquare(square1);
 		ship.addSquare(square2);
 		assertEquals(ship.getSquareByCoord(square1),0);

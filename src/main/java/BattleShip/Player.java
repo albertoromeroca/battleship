@@ -8,12 +8,14 @@ public class Player {
 	
 	private String name;
 	private ArrayList<Ship> ships;
+	private Board board;
 	
 	/*Methods*/
 	
-	public Player(String name) { //Done
+	public Player(String name, Board board) { //Done
 		this.name = name;
 		this.ships = new ArrayList<Ship>();
+		this.board = board;
 		
 	}
 	
@@ -47,7 +49,8 @@ public class Player {
 		return ship;
 	}
 	
-	
-	
-	
+	public Board getBoard() { //Done
+		return this.board;
+	}
+		
 }

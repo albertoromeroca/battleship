@@ -4,7 +4,7 @@ public class Square {
 
 	/*Attributes*/
 	
-	private String letter;
+	private char letter;
 	private int num;
 	private boolean occupied;
 	private boolean visited;
@@ -13,7 +13,7 @@ public class Square {
 		
 	/*Methods*/
 	
-	public Square(String letter, int num) { //Done
+	public Square(char letter, int num) { //Done
 		this.num = num;
 		this.letter = letter;
 		this.occupied = false;
@@ -29,11 +29,11 @@ public class Square {
 		return this.num;
 	}
 	
-	public void setLetter(String letter) { //Done
+	public void setLetter(char letter) { //Done
 		this.letter = letter;
 	}
 	
-	public String getLetter() { //Done
+	public char getLetter() { //Done
 		return this.letter;
 	}
 	
