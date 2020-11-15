@@ -36,8 +36,11 @@ public class Ship {
 		return this.death;
 	}
 	
-	public void addSquare(Square square) { //Done
-		this.squares.add(square);
+	public void addSquares(ArrayList<Square> squares) { //Done
+		for (int i = 0; i < squares.size(); i++) {
+				squares.get(i).setOccupied();
+				this.squares.add(squares.get(i));
+		}
 	}
 	
 	
@@ -53,10 +56,28 @@ public class Ship {
 	}
 		
 	public void setExplosion(Square square) { //Done
-		square.setTouched();
-		square.setVisited();
+		for (int i = 0; i < this.squares.size(); i++) {
+			if(square.getLetter() == this.squares.get(i).getLetter() && square.getNum() == this.squares.get(i).getNum()) {
+				this.squares.get(i).setTouched();
+				this.squares.get(i).setVisited();
+			}
+			
+		}
 	}
 	
+	public boolean isAllTouched(){
+		boolean death = false;
+		int aux = 0;
+		for(int i = 0; i < this.squares.size(); i++) {
+			if(this.squares.get(i).getTouched()) {
+				aux++;
+			}
+		}
+		if(aux == this.getLength()) {
+			death = true;
+		}
+		return death;
+	}
 	
 }
 

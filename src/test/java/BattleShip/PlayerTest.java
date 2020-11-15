@@ -8,58 +8,56 @@ import org.junit.Test;
 
 public class PlayerTest {
 
+	private Square square1 = new Square('A', 1);
+	private Square square2 = new Square('A', 2);
+	private Square square3 = new Square('A', 3);
+	private Square square4 = new Square('A', 4);
+	private Square square5 = new Square('A', 5);
+	private ArrayList<Square> squares = new ArrayList<Square>();
+	private ArrayList<Square> squares2 = new ArrayList<Square>();
+	private Board board = new Board(squares);
+	private Player player = new Player("Lucas", board);
+	private Ship ship1 = new Ship(2);
+	private Ship ship2 = new Ship(3);
+	private Ship ship3 = new Ship(4);
+	
 	@Test
 	public void testPlayer() {
-		Square square1 = new Square('A', 1);
-		Square square2 = new Square('A', 2);
-		ArrayList<Square> squares = new ArrayList<Square>();
+
 		squares.add(square1);
 		squares.add(square2);
-		Board board = new Board(squares);
-		Player player = new Player("Lucas", board);
+		
 		assertEquals( player.getName(), "Lucas");
 	}
 
 	@Test
 	public void testGetName() {
-		Square square1 = new Square('A', 1);
-		Square square2 = new Square('A', 2);
-		ArrayList<Square> squares = new ArrayList<Square>();
+
 		squares.add(square1);
 		squares.add(square2);
-		Board board = new Board(squares);
-		Player player = new Player("Lucas", board);
+		
 		assertEquals( player.getName(), "Lucas");
 	}
 	
 	@Test
 	public void testSetName() {
-		Square square1 = new Square('A', 1);
-		Square square2 = new Square('A', 2);
-		ArrayList<Square> squares = new ArrayList<Square>();
+
 		squares.add(square1);
 		squares.add(square2);
-		Board board = new Board(squares);
-		Player player = new Player("Lucas", board);
+
 		player.setName("Jose");
 		assertEquals(player.getName(),"Jose");
 	}
 	
 	@Test
 	public void TestGetShip() {
-		Square square1 = new Square('A', 1);
-		Square square2 = new Square('A', 2);
-		ArrayList<Square> squares = new ArrayList<Square>();
+
 		squares.add(square1);
 		squares.add(square2);
-		Board board = new Board(squares);
-		Player player = new Player("Lucas", board);
-		Ship ship1 = new Ship(2);
-		Ship ship2 = new Ship(3);
-		Ship ship3 = new Ship(4);
 		player.addShip(ship1);
 		player.addShip(ship2);
 		player.addShip(ship3);
+		
 		assertEquals(player.getShip(2).getLength(),2);
 		assertEquals(player.getShip(3).getLength(),3);
 		assertEquals(player.getShip(4).getLength(),4);
@@ -67,19 +65,13 @@ public class PlayerTest {
 	
 	@Test
 	public void testAddShip() {
-		Square square1 = new Square('A', 1);
-		Square square2 = new Square('A', 2);
-		ArrayList<Square> squares = new ArrayList<Square>();
+
 		squares.add(square1);
 		squares.add(square2);
-		Board board = new Board(squares);
-		Player player = new Player("Lucas", board);
-		Ship ship1 = new Ship(2);
-		Ship ship2 = new Ship(3);
-		Ship ship3 = new Ship(4);
 		player.addShip(ship1);
 		player.addShip(ship2);
 		player.addShip(ship3);
+		
 		assertEquals(player.getShip(2).getLength(),2);
 		assertEquals(player.getShip(3).getLength(),3);
 		assertEquals(player.getShip(4).getLength(),4);
@@ -87,35 +79,57 @@ public class PlayerTest {
 	
 	@Test
 	public void TestIsShip() {
-		Square square1 = new Square('A', 1);
-		Square square2 = new Square('A', 2);
-		Square square3 = new Square('A',3);
-		ArrayList<Square> squares = new ArrayList<Square>();
+
 		squares.add(square1);
 		squares.add(square2);
-		Board board = new Board(squares);
-		Player player = new Player("Lucas", board);
-		Ship ship1 = new Ship(2);
 		player.addShip(ship1);
-		
-		ship1.addSquare(square1);
-		ship1.addSquare(square2);
+		ship1.addSquares(squares);
 		player.isShip(square1);
+		player.isShip(square2);
 		player.isShip(square3);
+		
 		assertTrue(square1.getTouched());
+		assertTrue(square2.getTouched());
 		assertFalse(square3.getTouched());
 	}
 	
 	@Test
 	public void testGetBoard() {
-		Square square1 = new Square('A', 1);
-		Square square2 = new Square('A', 2);
-		ArrayList<Square> squares = new ArrayList<Square>();
+
 		squares.add(square1);
 		squares.add(square2);
-		Board board = new Board(squares);
-		Player player = new Player("Lucas", board);
+
 		assertEquals( player.getBoard(), board);
+	}
+	
+	@Test
+	public void testGetArrayShips() {
+
+		squares.add(square1);
+		squares.add(square2);
+		squares2.add(square3);
+		squares2.add(square4);
+		squares2.add(square5);
+		ship1.addSquares(squares);
+		ship2.addSquares(squares2);
+		player.addShip(ship1);
+		player.addShip(ship2);
+		
+		assertEquals( player.getArrayShips().get(0).getLength(), 2);
+		assertEquals( player.getArrayShips().get(1).getLength(), 3);
+		
+	}
+	
+	@Test
+	public void testGetShipBySquare() {
+
+		squares.add(square1);
+		squares.add(square2);
+		player.addShip(ship1);
+		ship1.addSquares(squares);
+		
+		assertEquals(player.getShipBySquare(square1).getLength(),2);
+		assertEquals(player.getShipBySquare(square3),null);
 	}
 
 }

@@ -34,6 +34,16 @@ public class Player {
 			}
 		}
 	}
+	
+	public Ship getShipBySquare(Square square) {
+		Ship ship = null;
+		for (int i = 0; i < this.ships.size(); i++) {
+			if(this.ships.get(i).getSquareByCoord(square) >= 0) {
+				ship = this.ships.get(i);
+			}
+		}
+		return ship;
+	}
 
 	public void addShip(Ship ship) {
 		this.ships.add(ship);	
@@ -48,6 +58,11 @@ public class Player {
 		}
 		return ship;
 	}
+	
+	public ArrayList<Ship> getArrayShips() {
+		return this.ships;
+	}
+	
 	
 	public Board getBoard() { //Done
 		return this.board;
