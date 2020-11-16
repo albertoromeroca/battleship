@@ -43,8 +43,8 @@ public class Main {
 		Board board1 = new Board(squares1);
 		Board board2 = new Board(squares2);
 		
-		Player player1 = new Player("", board1);
-		Player player2 = new Player("", board2);
+		PlayerInterface player1 = new Player("", board1);
+		PlayerInterface player2 = new Player("", board2);
 		
 		GameView view = new GameView();
 		
@@ -53,11 +53,13 @@ public class Main {
 		GameController game = new GameController(player1, player2, view, scanner);
 		
 		game.setDataPlayerName(player1);
+		game.setDataPlayerName(player2);
+		
 		game.setDataPlayerAirCraftCarrier(player1);
 		game.setDataPlayerDestroyer(player1);
 		game.setDataPlayerSubmarine(player1);
 		game.setDataPlayerLandingCraft(player1);
-		game.setDataPlayerName(player2);
+		
 		game.setDataPlayerAirCraftCarrier(player2);
 		game.setDataPlayerDestroyer(player2);
 		game.setDataPlayerSubmarine(player2);
@@ -65,5 +67,4 @@ public class Main {
 		
 		game.play();
 	}
-
 }

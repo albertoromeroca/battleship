@@ -1,5 +1,8 @@
 package BattleShip;
 
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class OurScanner implements ScannerInterface{
@@ -11,11 +14,21 @@ public class OurScanner implements ScannerInterface{
 	}
 	
 	public String nextLine() {
-		return this.sc.nextLine();
+		String name = this.sc.nextLine();
+		return name;
 	}
 	
 	public int nextInt() {
-		return this.sc.nextInt();
+		int num = 0;
+		do {			
+			  try {
+			    num = sc.nextInt();
+			  } catch (InputMismatchException ime){
+				  System.out.println("Error. Try again.");
+				  sc.next();
+			  }
+			} while (num==0);
+		return num;
 	}
 	
 	public char nextChar() {
