@@ -11,6 +11,10 @@ public class SquareTest {
 		Square square = new Square('A',1);
 		assertEquals( square.getNum(), 1);
 		assertEquals( square.getLetter(), 'A');
+		assertFalse(square.getOccupied());
+		assertFalse(square.getVisited());
+		assertFalse(square.getTouched());
+		assertNotNull(square);
 	}
 
 	@Test
@@ -24,6 +28,7 @@ public class SquareTest {
 	public void testGetNum() {
 		Square square = new Square('A',1);
 		assertEquals( square.getNum(), 1);
+		assertNotEquals( square.getNum(), 2);
 	}
 
 	@Test
@@ -37,6 +42,7 @@ public class SquareTest {
 	public void testGetLetter() {
 		Square square = new Square('A',1);
 		assertEquals(square.getLetter(), 'A');
+		assertNotEquals(square.getLetter(),'B');
 	}
 
 	@Test
@@ -63,5 +69,18 @@ public class SquareTest {
 	public void testGetVisited() {
 		Square square = new Square('A',1);
 		assertFalse(square.getVisited());
+	}
+	
+	@Test
+	public void testSetTouched() {
+		Square square = new Square('A',1);
+		square.setTouched();
+		assertTrue(square.getTouched());
+	}
+
+	@Test
+	public void testGetTouched() {
+		Square square = new Square('A',1);
+		assertFalse(square.getTouched());
 	}
 }

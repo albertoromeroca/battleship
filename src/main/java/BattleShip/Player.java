@@ -2,20 +2,20 @@ package BattleShip;
 
 import java.util.ArrayList;
 
-public class Player {
+public class Player implements PlayerInterface {
 
 	/*Attributes*/
 	
 	private String name;
-	private ArrayList<Ship> ships;
+	private ArrayList<ShipInterface> ships;
 	private Board board;
 	
 	/*Methods*/
 	
 	public Player(String name, Board board) { //Done
-		this.name = name;
-		this.ships = new ArrayList<Ship>();
+		this.ships = new ArrayList<ShipInterface>();
 		this.board = board;
+		this.name = name;
 		
 	}
 	
@@ -35,8 +35,8 @@ public class Player {
 		}
 	}
 	
-	public Ship getShipBySquare(Square square) {
-		Ship ship = null;
+	public ShipInterface getShipBySquare(Square square) {
+		ShipInterface ship = null;
 		for (int i = 0; i < this.ships.size(); i++) {
 			if(this.ships.get(i).getSquareByCoord(square) >= 0) {
 				ship = this.ships.get(i);
@@ -45,12 +45,12 @@ public class Player {
 		return ship;
 	}
 
-	public void addShip(Ship ship) {
+	public void addShip(ShipInterface ship) {
 		this.ships.add(ship);	
 	}
 	
-	public Ship getShip(int length) {
-		Ship ship = null;
+	public ShipInterface getShip(int length) {
+		ShipInterface ship = null;
 		for (int i = 0; i < this.ships.size(); i++) {
 			if(this.ships.get(i).getLength() == length) {
 				ship = this.ships.get(i);
@@ -59,7 +59,7 @@ public class Player {
 		return ship;
 	}
 	
-	public ArrayList<Ship> getArrayShips() {
+	public ArrayList<ShipInterface> getArrayShips() {
 		return this.ships;
 	}
 	

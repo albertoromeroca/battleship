@@ -29,17 +29,7 @@ public class GameControllerTest{
 	
 	@Test
 	public void testGameController() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testTurn() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testPlay() {
-		fail("Not yet implemented");
+		assertNotNull(game);
 	}
 
 	@Test
@@ -330,5 +320,142 @@ public class GameControllerTest{
 		
 		assertEquals(playerAux.getArrayShips().get(0).getLength(),2);
 	}
+	
+	@Test
+	public void testTurn() {
+		
+		ArrayList<Square> squares1 = new ArrayList<Square>();
+		Board board1 = new Board(squares1);
+		PlayerInterface player1 = new MockPlayer("NOEL", board1);
+		
+		ArrayList<Square> squares2 = new ArrayList<Square>();
+		Board board2 = new Board(squares2);
+		PlayerInterface player2 = new MockPlayer("LUCAS", board2);
+		
+		game.getScanner().setChar('D');
+		game.getScanner().setInt(1);
+		Square squareAux = new Square('D',1);
 
+		game.turn(player2, player1);
+		
+		assertTrue(player2.getBoard().isOccupied(squareAux));
+			
+		game.getScanner().setChar('F');
+		game.getScanner().setInt(6);
+		Square squareAux2 = new Square('F',6);
+
+		game.turn(player2, player1);
+		
+		assertFalse(player2.getBoard().isOccupied(squareAux2));
+		
+		game.getScanner().setChar('D');
+		game.getScanner().setInt(2);
+		Square squareAux3 = new Square('D',2);
+
+		game.turn(player2, player1);
+		
+		assertTrue(player2.getShipBySquare(squareAux).getDeath());
+	}
+
+	@Test
+	public void testTurnWin() {
+		
+		ArrayList<Square> squares1 = new ArrayList<Square>();
+		Board board1 = new Board(squares1);
+		PlayerInterface player1 = new MockPlayer("NOEL", board1);
+		
+		ArrayList<Square> squares2 = new ArrayList<Square>();
+		Board board2 = new Board(squares2);
+		PlayerInterface player2 = new MockPlayer("LUCAS", board2);
+		
+		game.getScanner().setChar('D');
+		game.getScanner().setInt(1);
+
+		game.turn(player2, player1);
+		
+		game.getScanner().setChar('D');
+		game.getScanner().setInt(2);
+
+		game.turn(player2, player1);
+		
+		game.getScanner().setChar('C');
+		game.getScanner().setInt(1);
+
+		game.turn(player2, player1);
+		
+		game.getScanner().setChar('C');
+		game.getScanner().setInt(2);
+
+		game.turn(player2, player1);
+		
+		game.getScanner().setChar('C');
+		game.getScanner().setInt(3);
+
+		game.turn(player2, player1);
+		
+		game.getScanner().setChar('B');
+		game.getScanner().setInt(1);
+
+		game.turn(player2, player1);
+		
+		game.getScanner().setChar('B');
+		game.getScanner().setInt(2);
+
+		game.turn(player2, player1);
+		
+		game.getScanner().setChar('B');
+		game.getScanner().setInt(3);
+
+		game.turn(player2, player1);
+		
+		game.getScanner().setChar('D');
+		game.getScanner().setInt(1);
+
+		game.turn(player2, player1);
+		
+		game.getScanner().setChar('B');
+		game.getScanner().setInt(4);
+
+		game.turn(player2, player1);
+		
+		game.getScanner().setChar('D');
+		game.getScanner().setInt(1);
+
+		game.turn(player2, player1);
+		
+		game.getScanner().setChar('A');
+		game.getScanner().setInt(1);
+
+		game.turn(player2, player1);
+		
+		assertFalse(game.getWin());
+		
+		game.getScanner().setChar('A');
+		game.getScanner().setInt(2);
+
+		game.turn(player2, player1);
+		
+		game.getScanner().setChar('A');
+		game.getScanner().setInt(3);
+
+		game.turn(player2, player1);
+		
+		game.getScanner().setChar('A');
+		game.getScanner().setInt(4);
+
+		game.turn(player2, player1);
+		
+		game.getScanner().setChar('A');
+		game.getScanner().setInt(5);
+
+		game.turn(player2, player1);
+		
+		assertTrue(game.getWin());
+	
+	}
+	
+	@Test
+	public void testGetWin() { 
+		assertFalse(game.getWin());
+	}
 }

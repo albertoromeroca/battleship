@@ -3,7 +3,7 @@ package BattleShip;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
 
-public class Ship {
+public class Ship implements ShipInterface {
 
 	/*Attributes*/
 	

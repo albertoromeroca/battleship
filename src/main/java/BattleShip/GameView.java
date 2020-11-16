@@ -25,7 +25,8 @@ public class GameView {
 		System.out.println("Introduce your name: ");
 	}
 	
-	public void shipInformation(Player player) {
+	public void shipInformation(PlayerInterface player) {
+		
 		System.out.println(player.getName() + " has four ships: \n1- AirCraft carrier (length 5)\n" +
 												"2- Destroyer (length 4)\n" +
 												"3- Submarine (length 3)\n" + 
@@ -68,7 +69,7 @@ public class GameView {
 		System.out.println("Congratulations! One of the enemy's ships is SUNKED.\n");
 	}
 	
-	public void winner(Player player){
+	public void winner(PlayerInterface player){
 		System.out.println("Congratulations " + player.getName() + "! You're the WINNER!!!\n");
 	}
 	

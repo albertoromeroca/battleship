@@ -97,4 +97,19 @@ public class ShipTest {
 		assertTrue(ship.isAllTouched());
 		assertFalse(ship2.isAllTouched());
 	}
+	
+	@Test
+	public void testAddSquares() {
+		
+		squares.add(square1);
+		squares.add(square2);
+		ship.addSquares(squares);
+		ship.setExplosion(square1);
+		
+		assertTrue(square1.getTouched());
+		assertTrue(square1.getVisited());
+		assertFalse(square2.getTouched());
+		assertFalse(square2.getVisited());
+	}
+	
 }

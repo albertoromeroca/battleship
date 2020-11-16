@@ -8,8 +8,8 @@ public class GameController {
 
 	/*Attributes*/
 	
-	private Player player1;
-	private Player player2;
+	private PlayerInterface player1;
+	private PlayerInterface player2;
 	private int turn;
 	private boolean win;
 	private GameView view;
@@ -17,7 +17,7 @@ public class GameController {
 	
 	/*Methods*/
 	
-	public GameController(Player player1, Player player2, GameView view, ScannerInterface scanner ) { //Done
+	public GameController(PlayerInterface player1, PlayerInterface player2, GameView view, ScannerInterface scanner ) { //Done
 		this.player1 = player1;
 		this.player2 = player2;
 		this.turn = 2;
@@ -30,7 +30,7 @@ public class GameController {
 		return this.scanner;
 	}
 	
-	public void turn(Player player, Player player2) {
+	public void turn(PlayerInterface player, PlayerInterface player2) {
 		//bucleTurno
 		Square square;
 		boolean aux = false;
@@ -66,27 +66,29 @@ public class GameController {
 
 	}
 		
-	public void setDataPlayerName(Player player) {
+	public void setDataPlayerName(PlayerInterface player) {
 		String name;
 		do {
 			this.view.requestName();
 			name = this.scanner.nextLine();
-		}while( this.checkName(name) && !this.checkSecondName(this.player1, name));
+		}while(!this.checkName(name) && this.checkSecondName(this.player1, name));
 		
 		player.setName(name);
 		
-		view.shipInformation(player);
 	}
 	
-	public void setDataPlayerAirCraftCarrier(Player player) {
-		//view.requestAirCraftCarrier();
+	public void setDataPlayerAirCraftCarrier(PlayerInterface player) {
+		
+		view.shipInformation(player);
+		
+		view.requestAirCraftCarrier();
 		ArrayList<Square> squares1 = this.requestShip(player, 5);
 		Ship ship1 = new Ship(5);
 		ship1.addSquares(squares1);
 		player.addShip(ship1);
 	}
 	
-	public void setDataPlayerDestroyer(Player player) {
+	public void setDataPlayerDestroyer(PlayerInterface player) {
 		view.requestDestroyer();
 		ArrayList<Square> squares1 = this.requestShip(player, 4);
 		Ship ship1 = new Ship(4);
@@ -94,7 +96,7 @@ public class GameController {
 		player.addShip(ship1);
 	}
 	
-	public void setDataPlayerSubmarine(Player player) {
+	public void setDataPlayerSubmarine(PlayerInterface player) {
 		view.requestSubmarine();
 		ArrayList<Square> squares1 = this.requestShip(player, 3);
 		Ship ship1 = new Ship(3);
@@ -102,12 +104,16 @@ public class GameController {
 		player.addShip(ship1);
 	}
 	
-	public void setDataPlayerLandingCraft(Player player) {
+	public void setDataPlayerLandingCraft(PlayerInterface player) {
 		view.requestLandingCraft();
 		ArrayList<Square> squares1 = this.requestShip(player, 2);
 		Ship ship1 = new Ship(2);
 		ship1.addSquares(squares1);
 		player.addShip(ship1);
+	}
+	
+	public boolean getWin() {
+		return this.win;
 	}
 	
 	
@@ -151,7 +157,7 @@ public class GameController {
 		}
 	}
 	
-	public boolean checkSecondName(Player player1, String name2 ) {
+	public boolean checkSecondName(PlayerInterface player1, String name2 ) {
 		if(player1.getName() != name2){
 			return true;
 		}else {
@@ -160,7 +166,7 @@ public class GameController {
 		}
 	}
 	
-	public Square requestSquare(Player player){ //Pairwise testing
+	public Square requestSquare(PlayerInterface player){ 
 		char letter;
 		int num; 
 		do{
@@ -177,7 +183,7 @@ public class GameController {
 		
 	}
 	
-	public ArrayList<Square> requestShip(Player player, int length){
+	public ArrayList<Square> requestShip(PlayerInterface player, int length){
 		
 		char letter1;
 		int num1;
